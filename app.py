@@ -8,6 +8,13 @@ from models import db, User, FinancialRecord
 from engine import analyze_finances
 
 app = Flask(__name__)
+app.config["PROPAGATE_EXCEPTIONS"] = True
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    import traceback
+    traceback.print_exc()
+    return str(e), 500
 app.config['SECRET_KEY'] = 'financial_advice_tool_secret_123'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///finance.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
