@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block title %}Sign In — FinSight{% endblock %}
+
+{% block content %}
+<div class="auth-section">
+    <div class="auth-card fade-in-up">
+        <!-- Brand -->
+        <div class="text-center mb-4">
+            <div class="auth-icon">
+                <i class="fa-solid fa-lock-open"></i>
+            </div>
+            <h2 class="fw-bold" style="font-size:1.6rem;">Welcome Back!</h2>
+            <p class="text-muted small">Sign in to view your financial dashboard</p>
+        </div>
+
+        <form method="POST" action="">
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <div class="input-group premium-input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-envelope text-muted"></i></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                        required>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-3">
+                <div class="d-flex justify-content-between align-items-center">
+                    <label for="password" class="form-label mb-0">Password</label>
+                    <a href="#" class="text-decoration-none small" style="color:var(--primary);">Forgot password?</a>
+                </div>
+                <div class="input-group premium-input-group mt-1">
+                    <span class="input-group-text"><i class="fa-solid fa-lock text-muted"></i></span>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Your password" required>
+                </div>
+            </div>
+
+            <!-- Remember -->
+            <div class="form-check mb-4">
+                <input type="checkbox" class="form-check-input" id="remember" name="remember">
+                <label class="form-check-label text-muted small" for="remember">Remember me for 30 days</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary premium-btn w-100 rounded-pill py-3 fw-bold mb-4">
+                <i class="fa-solid fa-arrow-right-to-bracket me-2"></i>Sign In
+            </button>
+
+            <!-- Divider -->
+            <div class="text-center text-muted small position-relative mb-4">
+                <hr>
+                <span class="bg-white px-3 position-absolute top-50 start-50 translate-middle">Or sign in with</span>
+            </div>
+
+            <div class="d-flex gap-2 mb-4">
+                <button type="button" class="btn btn-outline-secondary w-50 py-2 rounded-pill small">
+                    <i class="fa-brands fa-google me-2"></i>Google
+                </button>
+                <button type="button" class="btn btn-outline-secondary w-50 py-2 rounded-pill small">
+                    <i class="fa-brands fa-apple me-2"></i>Apple
+                </button>
+            </div>
+
+            <p class="text-center text-muted small mb-0">
+                Don't have an account?
+                <a href="{{ url_for('signup') }}" class="fw-semibold text-decoration-none ms-1"
+                    style="color:var(--primary);">Create one free</a>
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock %}

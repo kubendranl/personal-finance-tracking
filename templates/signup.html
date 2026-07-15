@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block title %}Create Account — FinSight{% endblock %}
+
+{% block content %}
+<div class="auth-section">
+    <div class="auth-card fade-in-up">
+        <!-- Brand -->
+        <div class="text-center mb-4">
+            <div class="auth-icon">
+                <i class="fa-solid fa-user-plus"></i>
+            </div>
+            <h2 class="fw-bold" style="font-size:1.6rem;">Create Your Account</h2>
+            <p class="text-muted small">Join FinSight and master your finances — free forever</p>
+        </div>
+
+        <form method="POST" action="">
+            <!-- Username -->
+            <div class="mb-3">
+                <label for="username" class="form-label">Username</label>
+                <div class="input-group premium-input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-user text-muted"></i></span>
+                    <input type="text" class="form-control" id="username" name="username"
+                        placeholder="Choose a username" required>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="mb-3">
+                <label for="email" class="form-label">Email Address</label>
+                <div class="input-group premium-input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-envelope text-muted"></i></span>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com"
+                        required>
+                </div>
+            </div>
+
+            <!-- Password -->
+            <div class="mb-4">
+                <label for="password" class="form-label">Password</label>
+                <div class="input-group premium-input-group">
+                    <span class="input-group-text"><i class="fa-solid fa-lock text-muted"></i></span>
+                    <input type="password" class="form-control" id="password" name="password"
+                        placeholder="Create a strong password" required>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary premium-btn w-100 rounded-pill py-3 fw-bold mb-3">
+                <i class="fa-solid fa-rocket me-2"></i>Sign Up for Free
+            </button>
+
+            <!-- Trust badges -->
+            <div class="d-flex justify-content-center gap-3 text-muted mb-4" style="font-size:0.78rem;">
+                <span><i class="fa-solid fa-lock me-1 text-success"></i>Encrypted</span>
+                <span><i class="fa-solid fa-eye-slash me-1 text-success"></i>Private</span>
+                <span><i class="fa-solid fa-circle-check me-1 text-success"></i>No spam</span>
+            </div>
+
+            <p class="text-center text-muted small mb-0">
+                Already have an account?
+                <a href="{{ url_for('login') }}" class="fw-semibold text-decoration-none ms-1"
+                    style="color:var(--primary);">Sign in here</a>
+            </p>
+        </form>
+    </div>
+</div>
+{% endblock %}

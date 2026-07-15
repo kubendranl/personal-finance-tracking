@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="FinSight — AI-powered personal finance tracker. Master budgeting, savings, and get smart financial advice using the 50-30-20 rule.">
+    <title>{% block title %}FinSight — Smart Finance{% endblock %}</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+
+    <!-- ── Navbar ── -->
+    <nav class="navbar navbar-expand-lg premium-navbar sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <i class="fa-solid fa-chart-pie me-2"></i>Personal Finance Tracking with AI
+            </a>
+            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center gap-1">
+                    {% if current_user.is_authenticated %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('dashboard') }}">
+                            <i class="fa-solid fa-gauge-high me-1"></i>Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <span class="nav-link text-muted" style="font-size:0.8rem;">
+                            <i class="fa-solid fa-circle-user me-1"></i>{{ current_user.username }}
+                        </span>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn btn-sm btn-outline-light rounded-pill px-3 py-1 ms-1"
+                            href="{{ url_for('logout') }}">
+                            <i class="fa-solid fa-arrow-right-from-bracket me-1"></i>Logout
+                        </a>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('login') }}">Login</a>
+                    </li>
+                    <li class="nav-item ms-2">
+                        <a class="btn btn-primary premium-btn rounded-pill px-4 py-2" href="{{ url_for('signup') }}">
+                            Get Started Free
+                        </a>
+                    </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ── Flash Messages ── -->
+    <div class="container mt-3 flash-container">
+        {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }} alert-dismissible fade show premium-alert shadow-sm" role="alert">
+            {{ message }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+        {% endfor %}
+        {% endif %}
+        {% endwith %}
+    </div>
+
+    <!-- ── Main Content ── -->
+    <main class="flex-grow-1">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- ── Footer ── -->
+    <footer class="footer pt-5 pb-3 mt-auto">
+        <div class="container">
+            <div class="row g-4 mb-4">
+                <div class="col-md-4">
+                    <div class="footer-brand mb-2">
+                        <i class="fa-solid fa-chart-pie me-2"></i>FinSight
+                    </div>
+                    <p class="text-muted small mb-0">AI-powered financial tools to help you budget smarter, save more,
+                        and live better.</p>
+                </div>
+                <div class="col-md-2">
+                    <h6 class="fw-bold text-dark mb-3">Product</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2"><a href="{{ url_for('index') }}"
+                                class="text-muted text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="{{ url_for('login') }}"
+                                class="text-muted text-decoration-none">Dashboard</a></li>
+                        <li class="mb-2"><a href="{{ url_for('signup') }}" class="text-muted text-decoration-none">Sign
+                                Up</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold text-dark mb-3">Methodology</h6>
+                    <ul class="list-unstyled small">
+                        <li class="mb-2 text-muted">50-30-20 Rule</li>
+                        <li class="mb-2 text-muted">Emergency Fund</li>
+                        <li class="mb-2 text-muted">Debt-to-Income Ratio</li>
+                    </ul>
+                </div>
+                <div class="col-md-3">
+                    <h6 class="fw-bold text-dark mb-3">Get In Touch</h6>
+                    <p class="text-muted small">Questions about your financial health? We're here to help.</p>
+                    <div class="d-flex gap-2">
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle"
+                            style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;"><i
+                                class="fa-brands fa-twitter" style="font-size:.85rem;"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle"
+                            style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;"><i
+                                class="fa-brands fa-linkedin" style="font-size:.85rem;"></i></a>
+                        <a href="#" class="btn btn-sm btn-outline-light rounded-circle"
+                            style="width:36px;height:36px;display:flex;align-items:center;justify-content:center;"><i
+                                class="fa-brands fa-github" style="font-size:.85rem;"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr style="border-color:var(--border-color);">
+            <p class="mb-0 text-muted small text-center">&copy; 2026 FinSight AI Financial Advice Tool. All rights
+                reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+
+</html>
