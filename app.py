@@ -20,6 +20,10 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///finance.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db.init_app(app)
+
+with app.app_context():
+    db.create_all()
+
 bcrypt = Bcrypt(app)
 login_manager = LoginManager(app)
 login_manager.login_view = 'login'
@@ -131,8 +135,5 @@ def analyze(record_id):
     return render_template('results.html', results=analysis_results, record=record)
 
 if __name__ == "__main__":
-    with app.app_context():
-        db.create_all()
-
     port = int(os.environ.get("PORT", 5000))
     app.run(host="0.0.0.0", port=port, debug=False)
