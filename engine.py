@@ -1,4 +1,4 @@
-﻿def calculate_metrics(record):
+def calculate_metrics(record):
     needs = (
         record.housing_rent +
         record.food_dining +
@@ -61,7 +61,7 @@ def generate_advice(metrics, record):
     target_emergency_fund = metrics["total_expenses"] * 6
     if record.total_savings < target_emergency_fund:
         shortfall = target_emergency_fund - record.total_savings
-        advice.append(f"⚠️ Your current savings (₹{record.total_savings:,.2f}) don't cover a 6-month emergency fund (₹{target_emergency_fund:,.2f}). You need ₹{shortfall:,.2f} more.")
+        advice.append( f"⚠️ Your current savings (₹{record.total_savings:,.2f}) don't cover a 6-month emergency fund (₹{target_emergency_fund:,.2f}). You need ₹{shortfall:,.2f} more.")
     else:
         advice.append("🛡️ You have a solid emergency fund that covers at least 6 months of expenses.")
 
